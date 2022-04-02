@@ -1,0 +1,7 @@
+---
+# lego_acme-client/tasks/main.yml
+
+- name: 'Download binary on Debian'
+  include: download_binary_on_Debian.yml
+  when:
+    - 'ansible_distribution == "Debian"'
