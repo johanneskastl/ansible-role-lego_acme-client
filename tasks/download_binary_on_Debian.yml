@@ -48,7 +48,7 @@
 - name: 'Extract lego executable from archive'
   unarchive: 
     src: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
-    dest: '/usr/local/bin/'
+    dest: "{{ path_to_install_to }}/"
     remote_src: 'true'
     extra_opts:
       - 'lego'
