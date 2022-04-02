@@ -1,0 +1,55 @@
+---
+# lego_acme-client/tasks/download_binary_on_Debian.yml
+
+#
+# set github_architecture string so we can download the file from Github (i.e. armv7l => armv7 etc.)
+#
+
+- name: 'Set variable for armv7 rchitecture'
+  set_fact:
+    github_architecture: "armv7"
+  when: 'ansible_architecture == "armv7l"'
+
+- name: 'Set variable for arm64 rchitecture'
+  set_fact:
+    github_architecture: "arm64"
+  when: 'ansible_architecture == "aarch64"'
+
+- name: 'Set variable for amd64 rchitecture'
+  set_fact:
+    github_architecture: "amd64"
+  when: 'ansible_architecture == "x86_64"'
+
+#
+# Get the latest release of lego
+#
+
+- name: 'Get lego release information'
+  uri:                                                               
+    url: 'https://api.github.com/repos/go-acme/lego/releases/latest'
+    return_content: 'true'                                           
+  register: 'json_reponse'
+  check_mode: 'false'
+
+- name: 'Extract latest version from release information'
+  set_fact:
+    latest_lego_release: "{{ json_reponse.json.tag_name }}"
+
+- name: 'Download and extract latest lego release'
+  get_url:
+    url: "https://github.com/go-acme/lego/releases/download/{{ latest_lego_release }}/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
+    dest: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
+    checksum: "sha256:https://github.com/go-acme/lego/releases/download/{{ latest_lego_release }}/lego_{{ latest_lego_release  | regex_replace('^v','') }}_checksums.txt"
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+  register: download_archive
+
+- name: 'Extract lego executable from archive'
+  unarchive: 
+    src: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
+    dest: '/usr/local/bin/'
+    remote_src: 'true'
+    extra_opts:
+      - 'lego'
+  ignore_errors: "{{ download_archive.changed | bool and ansible_check_mode | bool }}"
