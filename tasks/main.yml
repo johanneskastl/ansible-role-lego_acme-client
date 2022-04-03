@@ -25,9 +25,10 @@
   tags:
     - 'systemd_timer'
 
-- name: 'Enable the systemd timer for certificate renewal'
+- name: 'Enable and start the systemd timer for certificate renewal'
   service:
     name: 'lego_certificate_renew.timer'
+    state: 'started'
     enabled: 'true'
   tags:
     - 'systemd_timer'
