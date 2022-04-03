@@ -7,3 +7,8 @@
     - 'installation'
   when:
     - 'ansible_distribution == "Debian"'
+
+- name: 'Create helper script'
+  include: create_helper_script.yml
+  tags:
+    - 'helper_script'
