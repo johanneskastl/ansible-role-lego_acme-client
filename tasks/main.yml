@@ -24,3 +24,10 @@
   include: systemd_timer.yml
   tags:
     - 'systemd_timer'
+
+- name: 'Enable the systemd timer for certificate renewal'
+  service:
+    name: 'lego_certificate_renew.timer'
+    enabled: 'true'
+  when:
+    - 'enable_lego_renew_timer | bool'
