@@ -12,3 +12,10 @@
   include: create_helper_script.yml
   tags:
     - 'helper_script'
+
+- name: 'Create config file'
+  include: create_config_file.yml
+  tags:
+    - 'config_file'
+  when:
+    - 'lego_config is defined'
