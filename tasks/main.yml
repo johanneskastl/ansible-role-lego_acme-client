@@ -29,5 +29,7 @@
   service:
     name: 'lego_certificate_renew.timer'
     enabled: 'true'
+  tags:
+    - 'systemd_timer'
   when:
     - 'enable_lego_renew_timer | bool'
