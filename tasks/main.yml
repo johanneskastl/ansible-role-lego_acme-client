@@ -19,3 +19,8 @@
     - 'config_file'
   when:
     - 'lego_config is defined'
+
+- name: 'Create systemd timer for certificate renewal'
+  include: systemd_timer.yml
+  tags:
+    - 'systemd_timer'
