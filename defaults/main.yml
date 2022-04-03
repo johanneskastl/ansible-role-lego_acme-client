@@ -5,3 +5,7 @@ path_to_install_to: '/usr/local/bin'
 systemd_unit_path: '/etc/systemd/system/'
 systemd_timer_oncalendar: 'daily'
 systemd_timer_randomizeddelaysec: '30m'
+
+# lego defaults
+lego_server: 'https://acme-v02.api.letsencrypt.org/directory'
+lego_args: ''
