@@ -1,0 +1,10 @@
+#
+# {{ ansible_managed }}
+#
+[Unit]
+Description=Renew Let's Encrypt certificate using lego
+
+[Service]
+EnvironmentFile=-/etc/default/lego
+ExecStart=/usr/local/bin/lego_certificate_renew.sh
+Type=oneshot
