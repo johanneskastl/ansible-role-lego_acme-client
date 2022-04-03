@@ -35,7 +35,7 @@
   set_fact:
     latest_lego_release: "{{ json_reponse.json.tag_name }}"
 
-- name: 'Download and extract latest lego release'
+- name: 'Download latest lego release'
   get_url:
     url: "https://github.com/go-acme/lego/releases/download/{{ latest_lego_release }}/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
     dest: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
