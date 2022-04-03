@@ -1,0 +1,18 @@
+---
+# lego_acme-client/tasks/systemd_timer.yml
+
+- name: 'Create the systemd service file'
+  template:
+    src: 'lego_certificate_renew.service.j2'
+    dest: "{{ systemd_unit_path }}/lego_certificate_renew.service"
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+
+- name: 'Create the systemd timer file'
+  template:
+    src: 'lego_certificate_renew.timer.j2'
+    dest: "{{ systemd_unit_path }}/lego_certificate_renew.timer"
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
