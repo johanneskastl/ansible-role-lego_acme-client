@@ -8,3 +8,11 @@
     owner: 'root'
     group: 'root'
     mode: '0600'
+
+- name: 'make sure the directory from lego_path exists'
+  file:
+    path: "{{ lego_path }}"
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
