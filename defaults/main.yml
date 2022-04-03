@@ -6,6 +6,9 @@ systemd_unit_path: '/etc/systemd/system/'
 systemd_timer_oncalendar: 'daily'
 systemd_timer_randomizeddelaysec: '30m'
 
+# enable the systemd timer?
+enable_lego_renew_timer: 'false'
+
 # lego defaults
 lego_server: 'https://acme-v02.api.letsencrypt.org/directory'
 lego_args: ''
