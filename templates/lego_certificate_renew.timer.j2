@@ -6,7 +6,7 @@ Description=Renew Let's Encrypt certificate using lego
 
 [Timer]
 OnCalendar={{ systemd_timer_oncalendar }}
-RandomizedDelaySec=30m
+RandomizedDelaySec={{ systemd_timer_randomizeddelaysec }}
 Persistent=true
 
 [Install]
