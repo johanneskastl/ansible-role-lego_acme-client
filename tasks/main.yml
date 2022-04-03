@@ -3,5 +3,7 @@
 
 - name: 'Download binary on Debian'
   include: download_binary_on_Debian.yml
+  tags:
+    - 'installation'
   when:
     - 'ansible_distribution == "Debian"'
