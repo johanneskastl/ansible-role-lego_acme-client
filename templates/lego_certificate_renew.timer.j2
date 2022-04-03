@@ -5,7 +5,7 @@
 Description=Renew Let's Encrypt certificate using lego
 
 [Timer]
-OnCalendar=daily
+OnCalendar={{ systemd_timer_oncalendar }}
 RandomizedDelaySec=30m
 Persistent=true
 
