@@ -1,0 +1,13 @@
+#
+# {{ ansible_managed }}
+#
+[Unit]
+Description=Renew Let's Encrypt certificate using lego
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=30m
+Persistent=true
+
+[Install]
+WantedBy=timers.target
