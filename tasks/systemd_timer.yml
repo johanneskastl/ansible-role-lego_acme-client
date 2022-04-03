@@ -8,6 +8,8 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
+  notify:
+    - 'Trigger systemctl daemon-reload'
 
 - name: 'Create the systemd timer file'
   template:
@@ -16,3 +18,5 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
+  notify:
+    - 'Trigger systemctl daemon-reload'
