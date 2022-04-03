@@ -9,6 +9,9 @@ systemd_timer_randomizeddelaysec: '30m'
 # enable the systemd timer?
 enable_lego_renew_timer: 'false'
 
+# create the config file in /etc/lego/config?
+create_lego_config_file: 'false'
+
 # lego defaults
 lego_server: 'https://acme-v02.api.letsencrypt.org/directory'
 lego_args: ''
