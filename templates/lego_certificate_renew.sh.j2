@@ -20,6 +20,11 @@ source /etc/lego/config
         exit 1
 }
 
+[ -z "$RENEW_ARGS" ] && {
+        echo "RENEW_ARGS is not set..."
+        exit 1
+}
+
 [ -z "$SERVER" ] && {
         echo "SERVER is not set..."
         exit 1
@@ -33,10 +38,11 @@ source /etc/lego/config
 echo "EMAIL is set to $EMAIL"
 echo "DOMAIN is set to $DOMAIN"
 echo "ARGS is set to $ARGS"
+echo "RENEW_ARGS is set to $RENEW_ARGS"
 echo "SERVER is set to $SERVER"
 echo "LEGO_PATH is set to $LEGO_PATH"
 
 #
 # Ready for take-off
 #
-{{ path_to_install_to }}/lego --accept-tos --path "$LEGO_PATH" --email "$EMAIL" --server "${SERVER}" $ARGS --domains "${DOMAIN}" renew
+{{ path_to_install_to }}/lego --accept-tos --path "$LEGO_PATH" --email "$EMAIL" --server "${SERVER}" $ARGS --domains "${DOMAIN}" renew $RENEW_ARGS
