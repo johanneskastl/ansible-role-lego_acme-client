@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: 'lego_acme-client'
+  namespace: 'johanneskastl'
   author: 'Johannes Kastl'
   description: 'Install and configure the lego ACME client (using binary download on Debian to get something fairly recent...)'
   company: 'B1 Systems GmbH'
