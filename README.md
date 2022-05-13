@@ -1,3 +1,5 @@
+![Ansible Lint](https://github.com/johanneskastl/ansible-role-lego_acme-client/workflows/Ansible%20Lint/badge.svg)
+
 lego_acme-client
 =========
 
