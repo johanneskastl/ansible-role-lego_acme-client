@@ -2,7 +2,7 @@
 # lego_acme-client/tasks/create_config_file.yml
 
 - name: 'Create the config file in /etc/lego'
-  template:
+  ansible.builtin.template:
     src: 'etc_lego_config.j2'
     dest: '/etc/lego/config'
     owner: 'root'
@@ -10,7 +10,7 @@
     mode: '0600'
 
 - name: 'make sure the directory from lego_path exists'
-  file:
+  ansible.builtin.file:
     path: "{{ lego_path }}"
     state: 'directory'
     owner: 'root'
