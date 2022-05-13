@@ -45,3 +45,6 @@
     mode: '0755'
   notify:
     - 'Extract lego executable from archive'
+
+- name: 'Flush handlers to extract binary now'
+  ansible.builtin.meta: flush_handlers
