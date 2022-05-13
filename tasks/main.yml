@@ -2,31 +2,31 @@
 # lego_acme-client/tasks/main.yml
 
 - name: 'Download binary on Debian'
-  include: download_binary_on_Debian.yml
+  ansible.builtin.include_tasks: download_binary_on_Debian.yml
   tags:
     - 'installation'
   when:
     - 'ansible_distribution == "Debian"'
 
 - name: 'Create helper script'
-  include: create_helper_script.yml
+  ansible.builtin.include_tasks: create_helper_script.yml
   tags:
     - 'helper_script'
 
 - name: 'Create config file'
-  include: create_config_file.yml
+  ansible.builtin.include_tasks: create_config_file.yml
   tags:
     - 'config_file'
   when:
     - 'create_lego_config_file | bool'
 
 - name: 'Create systemd timer for certificate renewal'
-  include: systemd_timer.yml
+  ansible.builtin.include_tasks: systemd_timer.yml
   tags:
     - 'systemd_timer'
 
 - name: 'Enable and start the systemd timer for certificate renewal'
-  service:
+  ansible.builtin.service:
     name: 'lego_certificate_renew.timer'
     state: 'started'
     enabled: 'true'
