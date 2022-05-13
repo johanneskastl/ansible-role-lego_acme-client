@@ -27,7 +27,7 @@
 - name: 'Get lego release information'
   ansible.builtin.uri:
     url: 'https://api.github.com/repos/go-acme/lego/releases/latest'
-    return_content: 'true'                                           
+    return_content: 'true'
   register: 'json_reponse'
   check_mode: 'false'
 
