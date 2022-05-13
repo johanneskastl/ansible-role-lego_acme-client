@@ -17,6 +17,14 @@
     group: 'root'
     mode: '0600'
 
+- name: 'Create the environment file /etc/default/lego'
+  ansible.builtin.template:
+    src: 'etc_default_lego.j2'
+    dest: '/etc/default/lego'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+
 - name: 'make sure the directory from lego_path exists'
   ansible.builtin.file:
     path: "{{ lego_path }}"
