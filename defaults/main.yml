@@ -8,6 +8,7 @@ systemd_timer_randomizeddelaysec: '30m'
 
 # download the binary?
 download_binary: 'false'
+github_download_url: 'https://github.com/go-acme/lego/releases/download'
 
 # enable the systemd timer?
 enable_lego_renew_timer: 'false'
