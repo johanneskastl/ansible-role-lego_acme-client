@@ -1,12 +1,12 @@
 ---
 # lego_acme-client/tasks/main.yml
 
-- name: 'Download binary on Debian'
+- name: 'Download binary'
   ansible.builtin.include_tasks: download_binary.yml
   tags:
     - 'installation'
   when:
-    - 'ansible_distribution == "Debian"'
+    - 'download_binary | bool'
 
 - name: 'Create helper script'
   ansible.builtin.include_tasks: create_helper_script.yml
