@@ -1,7 +1,7 @@
 ---
 # lego_acme-client/tasks/create_config_file.yml
 
-- name: 'Create the config file in /etc/lego'
+- name: 'Create the config file /etc/lego/config'
   ansible.builtin.template:
     src: 'etc_lego_config.j2'
     dest: '/etc/lego/config'
