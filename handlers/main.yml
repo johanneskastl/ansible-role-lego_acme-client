@@ -2,5 +2,5 @@
 # lego_acme-client/handlers/main.yml
 
 - name: 'Trigger systemctl daemon-reload'
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: 'yes'
