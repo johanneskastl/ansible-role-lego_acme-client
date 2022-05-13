@@ -4,3 +4,15 @@
 - name: 'Trigger systemctl daemon-reload'
   ansible.builtin.systemd:
     daemon_reload: 'yes'
+
+- name: 'Extract lego executable from archive'
+  ansible.builtin.unarchive:
+    src: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
+    dest: "{{ path_to_install_to }}/"
+    remote_src: 'true'
+    extra_opts:
+      - 'lego'
+  tags:
+    - 'installation'
+  when:
+    - 'not ansible_check_mode | bool'
