@@ -1,0 +1,6 @@
+#
+# {{ ansible_managed }}
+#
+{% if environment_file_contents is defined %}
+{{ environment_file_contents }}
+{% endif %}
