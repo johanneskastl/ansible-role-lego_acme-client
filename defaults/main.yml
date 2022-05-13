@@ -6,6 +6,9 @@ systemd_unit_path: '/etc/systemd/system/'
 systemd_timer_oncalendar: 'daily'
 systemd_timer_randomizeddelaysec: '30m'
 
+# download the binary?
+download_binary: 'false'
+
 # enable the systemd timer?
 enable_lego_renew_timer: 'false'
 
