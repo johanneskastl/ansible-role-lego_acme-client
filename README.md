@@ -25,7 +25,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-        - { role: 'johanneskastl.lego_acme-client' }
+        - role: 'johanneskastl.lego_acme-client'
 
 License
 -------
