@@ -40,8 +40,8 @@
     url: "{{ github_download_url }}/{{ latest_lego_release }}/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
     dest: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
     checksum: "sha256:{{ github_download_url }}/{{ latest_lego_release }}/lego_{{ latest_lego_release | regex_replace('^v', '') }}_checksums.txt"
-    owner: 'root'
-    group: 'root'
+    owner: "{{ lego_user }}"
+    group: "{{ lego_user }}"
     mode: '0755'
   notify:
     - 'Extract lego executable from archive'
