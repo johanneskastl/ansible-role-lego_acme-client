@@ -8,3 +8,6 @@ Description=Renew Let's Encrypt certificate using lego
 EnvironmentFile=-/etc/default/lego
 ExecStart={{ path_to_install_to }}/lego_certificate_renew.sh
 Type=oneshot
+{% if lego_user != "root" %}
+User={{ lego_user }}
+{% endif %}
