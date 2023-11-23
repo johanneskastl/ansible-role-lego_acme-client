@@ -31,4 +31,4 @@
     state: 'directory'
     owner: "{{ lego_user }}"
     group: "{{ lego_user }}"
-    mode: '0700'
+    mode: "{{ lego_path_directory_mode }}"
