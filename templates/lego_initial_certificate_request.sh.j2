@@ -3,8 +3,10 @@
 # {{ ansible_managed }}
 #
 
+set -o allexport
 source /etc/default/lego
 source /etc/lego/config
+set -o allexport
 
 [ -z "$EMAIL" ] && {
         echo "EMAIL is not set..."
