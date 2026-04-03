@@ -5,7 +5,11 @@
 
 set -o allexport
 source /etc/default/lego
+{% if lego_list_of_clients is defined %}
+source /etc/lego/config-{{ item['name'] }}
+{% else %}
 source /etc/lego/config
+{% endif %}
 set +o allexport
 
 {% if variables_to_check_for_being_set is defined %}
