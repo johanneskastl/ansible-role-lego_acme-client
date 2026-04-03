@@ -1,0 +1,8 @@
+---
+# lego_acme-client/tasks/multiple_clients-enable_the_systemd_timer.yml
+
+- name: Enable the systemd timer for the client
+  ansible.builtin.service:
+    name: lego_certificate_renew-{{ item['name'] }}.timer
+    state: started
+    enabled: true
