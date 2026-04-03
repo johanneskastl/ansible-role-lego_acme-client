@@ -19,6 +19,16 @@
   tags:
     - helper_script
 
+- name: Create the environment file
+  ansible.builtin.include_tasks: create_environment_file.yml
+  tags:
+    - environment_file
+
+- name: Make sure the lego_path directory exists
+  ansible.builtin.include_tasks: create_lego_path_directory.yml
+  tags:
+    - lego_path_directory
+
 #
 # old configuration with only one client
 #
