@@ -14,11 +14,6 @@
   when:
     - download_binary | bool
 
-- name: Create helper script
-  ansible.builtin.include_tasks: create_helper_script.yml
-  tags:
-    - helper_script
-
 - name: Create the environment file
   ansible.builtin.include_tasks: create_environment_file.yml
   tags:
@@ -34,6 +29,13 @@
     - lego_path_directory
   when:
     - lego_path is defined
+
+- name: Single client - Create helper script
+  ansible.builtin.include_tasks: create_helper_script.yml
+  tags:
+    - helper_script
+  when:
+    - lego_list_of_clients is undefined
 
 - name: Single client - Create config file
   ansible.builtin.include_tasks: create_config_file.yml
