@@ -1,0 +1,10 @@
+---
+# lego_acme-client/tasks/multiple_clients-create_lego_path_directory.yml
+
+- name: Make sure the directory from lego_path exists
+  ansible.builtin.file:
+    path: "{{ item['lego_path'] }}"
+    state: directory
+    owner: "{{ item['lego_user'] | default(lego_user) }}"
+    group: "{{ item['lego_user'] | default(lego_user) }}"
+    mode: "{{ item['lego_path_directory_mode'] | default(lego_path_directory_mode) }}"
