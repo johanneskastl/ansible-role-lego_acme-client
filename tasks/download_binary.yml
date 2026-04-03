@@ -5,37 +5,37 @@
 # set github_architecture string so we can download the file from Github (i.e. armv7l => armv7 etc.)
 #
 
-- name: 'Set variable for armv7 architecture'
+- name: Set variable for armv7 architecture
   ansible.builtin.set_fact:
     github_architecture: "armv7"
-  when: 'ansible_architecture == "armv7l"'
+  when: ansible_architecture == "armv7l"
 
-- name: 'Set variable for arm64 architecture'
+- name: Set variable for arm64 architecture
   ansible.builtin.set_fact:
     github_architecture: "arm64"
-  when: 'ansible_architecture == "aarch64"'
+  when: ansible_architecture == "aarch64"
 
-- name: 'Set variable for amd64 architecture'
+- name: Set variable for amd64 architecture
   ansible.builtin.set_fact:
     github_architecture: "amd64"
-  when: 'ansible_architecture == "x86_64"'
+  when: ansible_architecture == "x86_64"
 
 #
 # Get the latest release of lego
 #
 
-- name: 'Get lego release information'
+- name: Get lego release information
   ansible.builtin.uri:
-    url: 'https://api.github.com/repos/go-acme/lego/releases/latest'
-    return_content: 'true'
-  register: 'json_reponse'
-  check_mode: 'false'
+    url: https://api.github.com/repos/go-acme/lego/releases/latest
+    return_content: true
+  register: json_reponse
+  check_mode: false
 
-- name: 'Extract latest version from release information'
+- name: Extract latest version from release information
   ansible.builtin.set_fact:
     latest_lego_release: "{{ json_reponse.json.tag_name }}"
 
-- name: 'Download latest lego release'
+- name: Download latest lego release
   ansible.builtin.get_url:
     url: "{{ github_download_url }}/{{ latest_lego_release }}/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
     dest: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
@@ -44,7 +44,7 @@
     group: "{{ lego_user }}"
     mode: '0755'
   notify:
-    - 'Extract lego executable from archive'
+    - Extract lego executable from archive
 
-- name: 'Flush handlers to extract binary now'
+- name: Flush handlers to extract binary now
   ansible.builtin.meta: flush_handlers
