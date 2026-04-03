@@ -1,34 +1,34 @@
 ---
 # lego_acme-client/tasks/create_config_file.yml
 
-- name: 'Create the directory /etc/lego/'
+- name: Create the directory /etc/lego/
   ansible.builtin.file:
-    path: '/etc/lego/'
-    state: 'directory'
+    path: /etc/lego/
+    state: directory
     owner: "{{ lego_user }}"
     group: "{{ lego_user }}"
     mode: '0700'
 
-- name: 'Create the config file /etc/lego/config'
+- name: Create the config file /etc/lego/config
   ansible.builtin.template:
-    src: 'etc_lego_config.j2'
-    dest: '/etc/lego/config'
+    src: etc_lego_config.j2
+    dest: /etc/lego/config
     owner: "{{ lego_user }}"
     group: "{{ lego_user }}"
     mode: '0600'
 
-- name: 'Create the environment file /etc/default/lego'
+- name: Create the environment file /etc/default/lego
   ansible.builtin.template:
-    src: 'etc_default_lego.j2'
-    dest: '/etc/default/lego'
+    src: etc_default_lego.j2
+    dest: /etc/default/lego
     owner: "{{ lego_user }}"
     group: "{{ lego_user }}"
     mode: '0600'
 
-- name: 'Make sure the directory from lego_path exists'
+- name: Make sure the directory from lego_path exists
   ansible.builtin.file:
     path: "{{ lego_path }}"
-    state: 'directory'
+    state: directory
     owner: "{{ lego_user }}"
     group: "{{ lego_user }}"
     mode: "{{ lego_path_directory_mode }}"
