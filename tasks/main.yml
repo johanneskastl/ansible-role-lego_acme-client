@@ -19,17 +19,24 @@
   tags:
     - helper_script
 
+#
+# old configuration with only one client
+#
+
 - name: Create config file
   ansible.builtin.include_tasks: create_config_file.yml
   tags:
     - config_file
   when:
     - create_lego_config_file | bool
+    - lego_list_of_clients is undefined
 
 - name: Create systemd timer for certificate renewal
   ansible.builtin.include_tasks: systemd_timer.yml
   tags:
     - systemd_timer
+  when:
+    - lego_list_of_clients is undefined
 
 - name: Enable and start the systemd timer for certificate renewal
   ansible.builtin.service:
@@ -40,3 +47,4 @@
     - systemd_timer
   when:
     - enable_lego_renew_timer | bool
+    - lego_list_of_clients is undefined
