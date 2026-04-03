@@ -2,7 +2,11 @@
 # {{ ansible_managed }}
 #
 [Unit]
+{% if lego_list_of_clients is defined %}
+Description=Renew Let's Encrypt certificate using lego - {{ item['name'] }}
+{% else %}
 Description=Renew Let's Encrypt certificate using lego
+{% endif %}
 
 [Timer]
 OnCalendar={{ systemd_timer_oncalendar }}
