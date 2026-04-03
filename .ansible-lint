@@ -5,3 +5,12 @@ exclude_paths:
 skip_list:
   - role-name
   - schema[meta]
+enable_list:
+  - args
+  - empty-string-compare # opt-in
+  - no-log-password # opt-in
+  - no-same-owner # opt-in
+  - galaxy-version-incorrect # opt-in
+  # add yaml here if you want to avoid ignoring yaml checks when yamllint
+  # library is missing. Normally its absence just skips using that rule.
+  - yaml
