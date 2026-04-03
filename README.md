@@ -1,38 +1,33 @@
 ![Ansible Lint](https://github.com/johanneskastl/ansible-role-lego_acme-client/workflows/Ansible%20Lint/badge.svg)
 
-lego_acme-client
-=========
+# lego_acme-client
 
-Install and configure the lego ACME client (using binary download on Debian to get something fairly recent...)
 
-Requirements
-------------
+Install and configure the lego ACME client (using binary download on Debian to
+get something fairly recent...)
+
+## Requirements
 
 None.
 
-Role Variables
---------------
+## Role Variables
 
 To be done...
 
-Dependencies
-------------
+## Dependencies
 
 None
 
-Example Playbook
-----------------
+## Example Playbook
 
     - hosts: servers
       roles:
         - role: 'johanneskastl.lego_acme-client'
 
-License
--------
+## License
 
 BSD-3-Clause
 
-Author Information
-------------------
+## Author Information
 
 I am Johannes Kastl, reachable via kastl@b1-systems.de.
