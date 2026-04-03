@@ -1,0 +1,18 @@
+---
+# lego_acme-client/tasks/create_helper_script.yml
+
+- name: Create the helper script for the initial certificate request for the client
+  ansible.builtin.template:
+    src: lego_initial_certificate_request.sh.j2
+    dest: "{{ path_to_install_to }}/lego_initial_certificate_request-{{ item['name'] }}.sh"
+    owner: "{{ item['lego_user'] | default(lego_user) }}"
+    group: "{{ item['lego_user'] | default(lego_user) }}"
+    mode: '0755'
+
+- name: Create the helper script for certificate renewal for the client
+  ansible.builtin.template:
+    src: lego_certificate_renew.sh.j2
+    dest: "{{ path_to_install_to }}/lego_certificate_renew-{{ item['name'] }}.sh"
+    owner: "{{ item['lego_user'] | default(lego_user) }}"
+    group: "{{ item['lego_user'] | default(lego_user) }}"
+    mode: '0755'
