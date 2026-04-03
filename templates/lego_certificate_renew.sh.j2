@@ -8,6 +8,15 @@ source /etc/default/lego
 source /etc/lego/config
 set +o allexport
 
+{% if variables_to_check_for_being_set is defined %}
+{% for variable_to_check in variables_to_check_for_being_set %}
+[[ -z "${{ '{' }}{{ variable_to_check }}{{ '}' }}" ]] && {
+    echo "Error, {{variable_to_check}} is unset..."
+    exit 3
+}
+{% endfor%}
+{% endif%}
+
 [ -z "$EMAIL" ] && {
         echo "EMAIL is not set..."
         exit 1
