@@ -1,0 +1,10 @@
+---
+# lego_acme-client/tasks/create_config_file.yml
+
+- name: Create the environment file /etc/default/lego
+  ansible.builtin.template:
+    src: etc_default_lego.j2
+    dest: /etc/default/lego
+    owner: "{{ lego_user }}"
+    group: "{{ lego_user }}"
+    mode: '0600'
