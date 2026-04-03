@@ -12,6 +12,9 @@
     remote_src: 'true'
     extra_opts:
       - 'lego'
+    owner: "{{ lego_user }}"
+    group: "{{ lego_user }}"
+    mode: '0755'
   tags:
     - 'installation'
   when:
