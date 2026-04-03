@@ -3,7 +3,7 @@
 
 - name: Trigger systemctl daemon-reload
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: Extract lego executable from archive
   ansible.builtin.unarchive:
