@@ -28,14 +28,14 @@
 # old configuration with only one client
 #
 
-- name: Make sure the lego_path directory exists
+- name: Single client - Make sure the lego_path directory exists
   ansible.builtin.include_tasks: create_lego_path_directory.yml
   tags:
     - lego_path_directory
   when:
     - lego_path is defined
 
-- name: Create config file
+- name: Single client - Create config file
   ansible.builtin.include_tasks: create_config_file.yml
   tags:
     - config_file
@@ -43,14 +43,14 @@
     - create_lego_config_file | bool
     - lego_list_of_clients is undefined
 
-- name: Create systemd timer for certificate renewal
+- name: Single client - Create systemd timer for certificate renewal
   ansible.builtin.include_tasks: systemd_timer.yml
   tags:
     - systemd_timer
   when:
     - lego_list_of_clients is undefined
 
-- name: Enable and start the systemd timer for certificate renewal
+- name: Single client - Enable and start the systemd timer for certificate renewal
   ansible.builtin.service:
     name: lego_certificate_renew.timer
     state: started
