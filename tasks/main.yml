@@ -60,3 +60,41 @@
   when:
     - enable_lego_renew_timer | bool
     - lego_list_of_clients is undefined
+
+#
+# new configuration with lego_list_of_clients
+#
+
+- name: Multiple clients - Make sure the lego_path directory exists
+  ansible.builtin.include_tasks: multiple_clients-create_lego_path_directory.yml
+  tags:
+    - lego_path_directory
+  when:
+    - lego_list_of_clients is defined
+  loop: "{{ lego_list_of_clients }}"
+
+- name: Multiple clients - Create config file
+  ansible.builtin.include_tasks: multiple_clients-create_config_file.yml
+  tags:
+    - config_file
+  when:
+    - lego_list_of_clients is defined
+    - item['create_lego_config_file'] | bool
+  loop: "{{ lego_list_of_clients }}"
+
+- name: Multiple clients - Create systemd timer for certificate renewal
+  ansible.builtin.include_tasks: multiple_clients-systemd_timer.yml
+  tags:
+    - systemd_timer
+  when:
+    - lego_list_of_clients is defined
+  loop: "{{ lego_list_of_clients }}"
+
+- name: Multiple clients - Enable and start the systemd timer for certificate renewal
+  ansible.builtin.include_tasks: multiple_clients-enable_the_systemd_timer.yml
+  tags:
+    - systemd_timer
+  when:
+    - lego_list_of_clients is defined
+    - item['enable_lego_renew_timer'] | bool
+  loop: "{{ lego_list_of_clients }}"
