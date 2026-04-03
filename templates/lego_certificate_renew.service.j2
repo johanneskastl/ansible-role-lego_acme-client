@@ -2,12 +2,37 @@
 # {{ ansible_managed }}
 #
 [Unit]
+{% if lego_list_of_clients is defined %}
+Description=Renew Let's Encrypt certificate using lego - {{ item['name'] }}
+{% else %}
 Description=Renew Let's Encrypt certificate using lego
+{% endif %}
 
 [Service]
 EnvironmentFile=-/etc/default/lego
+{% if lego_list_of_clients is defined %}
+ExecStart={{ item['path_to_install_to'] | default(path_to_install_to) }}/lego_certificate_renew-{{ item['name'] }}.sh
+{% else %}
 ExecStart={{ path_to_install_to }}/lego_certificate_renew.sh
+{% endif %}
 Type=oneshot
+{% if lego_list_of_clients is defined %}
+{# multiple clients #}
+{% if item['lego_user'] is defined %}
+{% if not item['lego_user'] == "root" %}
+User={{ lego_user }}
+{# no else, if the user is root we do not add anything #}
+{% endif %}
+{% else %}
+{# item['lego_user'] is not defined #}
 {% if lego_user != "root" %}
 User={{ lego_user }}
+{# no else, if the user is root we do not add anything #}
+{% endif %}
+{% endif %}
+{% else %}
+{# single client #}
+{% if lego_user != "root" %}
+User={{ lego_user }}
+{% endif %}
 {% endif %}
