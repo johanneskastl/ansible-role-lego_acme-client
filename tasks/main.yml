@@ -84,6 +84,14 @@
     - item['create_lego_config_file'] | bool
   loop: "{{ lego_list_of_clients }}"
 
+- name: Multiple clients - Create the helper scripts
+  ansible.builtin.include_tasks: multiple_clients-create_helper_script.yml
+  tags:
+    - helper_script
+  when:
+    - lego_list_of_clients is defined
+  loop: "{{ lego_list_of_clients }}"
+
 - name: Multiple clients - Create systemd timer for certificate renewal
   ansible.builtin.include_tasks: multiple_clients-systemd_timer.yml
   tags:
