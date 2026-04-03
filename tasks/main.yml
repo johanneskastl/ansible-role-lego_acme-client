@@ -24,14 +24,16 @@
   tags:
     - environment_file
 
+#
+# old configuration with only one client
+#
+
 - name: Make sure the lego_path directory exists
   ansible.builtin.include_tasks: create_lego_path_directory.yml
   tags:
     - lego_path_directory
-
-#
-# old configuration with only one client
-#
+  when:
+    - lego_path is defined
 
 - name: Create config file
   ansible.builtin.include_tasks: create_config_file.yml
