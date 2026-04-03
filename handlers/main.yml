@@ -1,21 +1,21 @@
 ---
 # lego_acme-client/handlers/main.yml
 
-- name: 'Trigger systemctl daemon-reload'
+- name: Trigger systemctl daemon-reload
   ansible.builtin.systemd:
-    daemon_reload: 'yes'
+    daemon_reload: yes
 
-- name: 'Extract lego executable from archive'
+- name: Extract lego executable from archive
   ansible.builtin.unarchive:
     src: "/tmp/lego_{{ latest_lego_release }}_linux_{{ github_architecture }}.tar.gz"
     dest: "{{ path_to_install_to }}/"
-    remote_src: 'true'
+    remote_src: true
     extra_opts:
-      - 'lego'
+      - lego
     owner: "{{ lego_user }}"
     group: "{{ lego_user }}"
     mode: '0755'
   tags:
-    - 'installation'
+    - installation
   when:
-    - 'not ansible_check_mode | bool'
+    - not ansible_check_mode | bool
