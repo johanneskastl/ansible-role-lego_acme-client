@@ -1,0 +1,18 @@
+---
+# lego_acme-client/tasks/multiple_clients-create_config_file.yml
+
+- name: Create the directory /etc/lego/
+  ansible.builtin.file:
+    path: /etc/lego/
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create the config file /etc/lego/config-XYZ for the client
+  ansible.builtin.template:
+    src: etc_lego_config.j2
+    dest: "/etc/lego/config-{{ item['name'] }}"
+    owner: "{{ item['lego_user'] | default(lego_user) }}"
+    group: "{{ item['lego_user'] | default(lego_user) }}"
+    mode: '0600'
