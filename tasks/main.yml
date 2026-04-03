@@ -1,42 +1,42 @@
 ---
 # lego_acme-client/tasks/main.yml
 
-- name: 'Define path to lego binary'
+- name: Define path to lego binary
   ansible.builtin.set_fact:
     path_to_lego: "{{ path_to_install_to }}/lego"
   when:
-    - 'path_to_lego is undefined'
+    - path_to_lego is undefined
 
-- name: 'Download binary'
+- name: Download binary
   ansible.builtin.include_tasks: download_binary.yml
   tags:
-    - 'installation'
+    - installation
   when:
-    - 'download_binary | bool'
+    - download_binary | bool
 
-- name: 'Create helper script'
+- name: Create helper script
   ansible.builtin.include_tasks: create_helper_script.yml
   tags:
-    - 'helper_script'
+    - helper_script
 
-- name: 'Create config file'
+- name: Create config file
   ansible.builtin.include_tasks: create_config_file.yml
   tags:
-    - 'config_file'
+    - config_file
   when:
-    - 'create_lego_config_file | bool'
+    - create_lego_config_file | bool
 
-- name: 'Create systemd timer for certificate renewal'
+- name: Create systemd timer for certificate renewal
   ansible.builtin.include_tasks: systemd_timer.yml
   tags:
-    - 'systemd_timer'
+    - systemd_timer
 
-- name: 'Enable and start the systemd timer for certificate renewal'
+- name: Enable and start the systemd timer for certificate renewal
   ansible.builtin.service:
-    name: 'lego_certificate_renew.timer'
-    state: 'started'
-    enabled: 'true'
+    name: lego_certificate_renew.timer
+    state: started
+    enabled: true
   tags:
-    - 'systemd_timer'
+    - systemd_timer
   when:
-    - 'enable_lego_renew_timer | bool'
+    - enable_lego_renew_timer | bool
