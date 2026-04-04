@@ -20,7 +20,7 @@ Type=oneshot
 {# multiple clients #}
 {% if item['lego_user'] is defined %}
 {% if not item['lego_user'] == "root" %}
-User={{ lego_user }}
+User={{ item['lego_user'] }}
 {# no else, if the user is root we do not add anything #}
 {% endif %}
 {% else %}
