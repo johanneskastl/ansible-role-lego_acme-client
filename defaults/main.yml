@@ -19,6 +19,9 @@ enable_lego_renew_timer: false
 # create the config file in /etc/lego/config?
 create_lego_config_file: false
 
+# add the IP address to the certificate?
+lego_add_ip_address_to_certificate: false
+
 # lego defaults
 lego_server: https://acme-v02.api.letsencrypt.org/directory
 lego_args: ''
