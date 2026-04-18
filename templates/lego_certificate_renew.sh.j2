@@ -61,4 +61,8 @@ echo "LEGO_PATH is set to $LEGO_PATH"
 #
 # Ready for take-off
 #
+{% if lego_add_ip_address_to_certificate | bool %}
+{{ path_to_lego }} --accept-tos --path "$LEGO_PATH" --email "$EMAIL" --server "${SERVER}" $ARGS --domains "${DOMAIN}" --domains {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} renew $RENEW_ARGS
+{% else %}
 {{ path_to_lego }} --accept-tos --path "$LEGO_PATH" --email "$EMAIL" --server "${SERVER}" $ARGS --domains "${DOMAIN}" renew $RENEW_ARGS
+{% endif %}
