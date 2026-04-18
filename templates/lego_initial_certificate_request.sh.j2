@@ -21,48 +21,48 @@ set +o allexport
 {% endfor%}
 {% endif%}
 
-[ -z "$EMAIL" ] && {
+[ -z "${EMAIL}" ] && {
         echo "EMAIL is not set..."
         exit 1
 }
 
-[ -z "$DOMAIN" ] && {
+[ -z "${DOMAIN}" ] && {
         echo "DOMAIN is not set..."
         exit 1
 }
 
-[ -z "$ARGS" ] && {
+[ -z "${ARGS}" ] && {
         echo "ARGS is not set..."
         exit 1
 }
 
-[ -z "$RENEW_ARGS" ] && {
+[ -z "${RENEW_ARGS}" ] && {
         echo "RENEW_ARGS is not set..."
         exit 1
 }
 
-[ -z "$SERVER" ] && {
+[ -z "${SERVER}" ] && {
         echo "SERVER is not set..."
         exit 1
 }
 
-[ -z "$LEGO_PATH" ] && {
+[ -z "${LEGO_PATH}" ] && {
         echo "LEGO_PATH is not set..."
         exit 1
 }
 
-echo "EMAIL is set to $EMAIL"
-echo "DOMAIN is set to $DOMAIN"
-echo "ARGS is set to $ARGS"
-echo "RENEW_ARGS is set to $RENEW_ARGS"
-echo "SERVER is set to $SERVER"
-echo "LEGO_PATH is set to $LEGO_PATH"
+echo "EMAIL is set to ${EMAIL}"
+echo "DOMAIN is set to ${DOMAIN}"
+echo "ARGS is set to ${ARGS}"
+echo "RENEW_ARGS is set to ${RENEW_ARGS}"
+echo "SERVER is set to ${SERVER}"
+echo "LEGO_PATH is set to ${LEGO_PATH}"
 
 #
 # Ready for take-off
 #
 {% if lego_add_ip_address_to_certificate | bool %}
-{{ path_to_lego }} --accept-tos --path "$LEGO_PATH" --email "$EMAIL" --server "${SERVER}" $ARGS --domains "${DOMAIN}" --domains {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} run
+{{ path_to_lego }} --accept-tos --path "${LEGO_PATH}" --email "${EMAIL}" --server "${SERVER}" ${ARGS} --domains "${DOMAIN}" --domains {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} run
 {% else %}
-{{ path_to_lego }} --accept-tos --path "$LEGO_PATH" --email "$EMAIL" --server "${SERVER}" --domains "${DOMAIN}" $ARGS run
+{{ path_to_lego }} --accept-tos --path "${LEGO_PATH}" --email "${EMAIL}" --server "${SERVER}" --domains "${DOMAIN}" ${ARGS} run
 {% endif %}
