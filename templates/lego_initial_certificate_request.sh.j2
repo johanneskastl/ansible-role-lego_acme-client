@@ -95,4 +95,4 @@ fi
 # Ready for take-off
 #
 {# ARGS and LEGO_DOMAIN_ARGS MUST NOT be quoted... #}
-{{ path_to_lego }} --accept-tos --path "${LEGO_PATH}" --email "${EMAIL}" --server "${SERVER}" ${ARGS} ${LEGO_DOMAIN_ARGS} run
+{{ path_to_lego }} run --accept-tos --path "${LEGO_PATH}" --email "${EMAIL}" --server "${SERVER}" ${ARGS} ${LEGO_DOMAIN_ARGS}
