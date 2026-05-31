@@ -30,10 +30,14 @@
     return_content: true
   register: json_reponse
   check_mode: false
+  when:
+    - latest_lego_release is undefined
 
 - name: Extract latest version from release information
   ansible.builtin.set_fact:
     latest_lego_release: "{{ json_reponse.json.tag_name }}"
+  when:
+    - latest_lego_release is undefined
 
 - name: Download latest lego release
   ansible.builtin.get_url:
