@@ -10,14 +10,14 @@ jobs:
 
     steps:
       # Important: This sets up your GITHUB_WORKSPACE environment variable
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0 # needed for progressive mode to work
           persist-credentials: false
 
       - name: Run ansible-lint
         # replace `main` with any valid ref, or tags like `v6`
-        uses: ansible/ansible-lint@v26.8.0
+        uses: ansible/ansible-lint@665d9e07a1943254d2910faffc106adaf7ea7294 # v26.8.0
         # optional:
         # with:
         #   path: "playbooks/"  # <-- only one value is allowed
