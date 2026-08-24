@@ -6,6 +6,14 @@
     path_to_lego: "{{ path_to_install_to }}/lego"
   when:
     - path_to_lego is undefined
+    - download_binary | bool
+
+- name: Define path to lego binary
+  ansible.builtin.set_fact:
+    path_to_lego: /usr/bin/lego
+  when:
+    - path_to_lego is undefined
+    - not download_binary | bool
 
 - name: Download binary
   ansible.builtin.include_tasks: download_binary.yml
