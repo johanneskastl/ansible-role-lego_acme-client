@@ -1,6 +1,8 @@
 name: Ansible Lint # feel free to pick your own name
 on: [push, pull_request]
 
+permissions: {}
+
 jobs:
   build:
     name: Ansible Lint # Naming the build is important to use it as a status check
